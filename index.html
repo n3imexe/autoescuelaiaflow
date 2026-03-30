@@ -54,6 +54,45 @@
             max-width: 100%;
         }
 
+        /* Prevent horizontal scroll on all sections */
+        section {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .products-container,
+        .features-container,
+        .pricing-container,
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Stats Bar - Prevent overflow */
+        .stats-bar {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .stats-grid {
+            max-width: 100%;
+        }
+
+        .stats-grid > div {
+            overflow: visible;
+        }
+
+        .stat-item {
+            overflow: visible;
+        }
+
+        /* Spreadsheet Container */
+        .spreadsheet-container {
+            max-width: 100%;
+            overflow: hidden;
+        }
+
         /* Grainy Texture Layer */
         body::before {
             content: '';
@@ -2415,16 +2454,18 @@
 
         .pricing-badge {
             position: absolute;
-            top: -12px;
-            right: 32px;
+            top: -14px;
+            right: 24px;
             background: linear-gradient(135deg, #00b760 0%, #00d97e 100%);
             color: white;
-            padding: 6px 16px;
+            padding: 8px 20px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
+            box-shadow: 0 4px 12px rgba(0, 183, 96, 0.3);
+            z-index: 10;
         }
 
         .pricing-plan-name {
@@ -2728,7 +2769,12 @@
             }
 
             .before-after-section {
-                padding: 60px 24px !important;
+                padding: 60px 20px !important;
+            }
+
+            .before-after-section > div {
+                max-width: 100% !important;
+                padding: 0 !important;
             }
 
             .section-header h2 {
@@ -2809,13 +2855,28 @@
             }
 
             /* Pricing Cards */
+            .pricing-section {
+                padding: 60px 20px !important;
+            }
+
+            .pricing-section > div {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+
             .pricing-grid {
                 grid-template-columns: 1fr;
                 gap: 24px;
             }
 
             .pricing-card {
-                padding: 32px 24px;
+                padding: 32px 20px;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .pricing-card.featured {
+                border-width: 2px !important;
             }
 
             .pricing-price {
@@ -2829,6 +2890,20 @@
             .pricing-features li {
                 padding: 14px 0;
                 line-height: 1.5;
+                word-break: break-word;
+            }
+
+            .pricing-button {
+                font-size: 15px !important;
+                padding: 14px 20px !important;
+            }
+
+            .pricing-plan-title {
+                font-size: 24px !important;
+            }
+
+            .pricing-description {
+                font-size: 14px !important;
             }
 
             /* FAQ */
@@ -2933,27 +3008,37 @@
 
             /* Stats Bar */
             .stats-bar {
-                padding: 28px 20px !important;
+                padding: 28px 16px !important;
                 margin-top: 40px !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
             }
 
             .stats-grid {
                 grid-template-columns: 1fr !important;
                 gap: 24px !important;
+                max-width: 100% !important;
             }
 
             .stats-grid > div {
-                padding: 16px 0;
+                padding: 16px 8px;
+                max-width: 100%;
+                overflow: visible;
             }
 
             .stat-number {
                 font-size: 36px !important;
                 margin-bottom: 6px !important;
+                word-break: keep-all;
             }
 
             .stat-label {
-                font-size: 14px !important;
+                font-size: 13px !important;
                 line-height: 1.4;
+                word-break: break-word;
+                padding: 0 4px;
             }
 
             /* Before/After Section */
@@ -3161,6 +3246,13 @@
             .premium-grid {
                 grid-template-columns: 1fr !important;
                 gap: 20px;
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+
+            .premium-grid > div {
+                max-width: 100%;
+                overflow: hidden;
             }
 
             /* Nav CTA Button */
@@ -3662,8 +3754,8 @@
     </section>
 
     <!-- Google Sheets Integration Section -->
-    <section class="google-sheets-section" style="padding: 100px 20px; background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); position: relative; overflow: hidden;">
-        <div class="products-container" style="max-width: 1200px; margin: 0 auto;">
+    <section class="google-sheets-section" style="padding: 100px 20px; background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); position: relative; overflow-x: hidden;">
+        <div class="products-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
             <div class="section-header" style="text-align: center; margin-bottom: 60px;">
                 <div style="display: inline-block; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 8px 20px; border-radius: 20px; font-size: 14px; font-weight: 700; margin-bottom: 20px;">
                     📊 INTEGRACIÓN AUTOMÁTICA
@@ -3686,8 +3778,8 @@
                 </div>
 
                 <!-- Spreadsheet Table -->
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px; min-width: 900px;">
                         <thead>
                             <tr style="background: #f9fafb; border-bottom: 2px solid #e5e7eb;">
                                 <th style="padding: 16px; text-align: left; font-weight: 700; color: #374151; border-right: 1px solid #e5e7eb; min-width: 50px;">#</th>
@@ -3794,8 +3886,8 @@
     </section>
 
     <!-- Before/After Section - Premium Comparison -->
-    <section class="before-after-section" id="beneficios" style="padding: 100px 20px; background: #fff;">
-        <div class="products-container" style="max-width: 1200px; margin: 0 auto;">
+    <section class="before-after-section" id="beneficios" style="padding: 100px 20px; background: #fff; overflow-x: hidden;">
+        <div class="products-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
             <div class="section-header" style="text-align: center; margin-bottom: 60px;">
                 <h2 style="font-size: 42px; font-weight: 800; margin-bottom: 16px;">El Cambio que Verás en tu Autoescuela</h2>
                 <p style="font-size: 20px; color: #6b7280;">De perder clientes a captar leads 24/7</p>
@@ -3868,17 +3960,17 @@
             </div>
 
             <!-- Stats Bar -->
-            <div class="stats-bar" style="margin-top: 60px; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #86efac; border-radius: 16px; padding: 48px; text-align: center; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);">
-                <div class="stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
-                    <div>
+            <div class="stats-bar" style="margin-top: 60px; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #86efac; border-radius: 16px; padding: 48px; text-align: center; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15); max-width: 100%; box-sizing: border-box;">
+                <div class="stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 100%;">
+                    <div class="stat-item">
                         <div class="stat-number" style="font-size: 48px; font-weight: 800; color: #059669; margin-bottom: 8px;">24/7</div>
                         <div class="stat-label" style="font-size: 16px; color: #065f46; font-weight: 600;">Disponibilidad continua</div>
                     </div>
-                    <div>
+                    <div class="stat-item">
                         <div class="stat-number" style="font-size: 48px; font-weight: 800; color: #059669; margin-bottom: 8px;">100%</div>
                         <div class="stat-label" style="font-size: 16px; color: #065f46; font-weight: 600;">Leads capturados</div>
                     </div>
-                    <div>
+                    <div class="stat-item">
                         <div class="stat-number" style="font-size: 48px; font-weight: 800; color: #059669; margin-bottom: 8px;">-60%</div>
                         <div class="stat-label" style="font-size: 16px; color: #065f46; font-weight: 600;">Tiempo en consultas básicas</div>
                     </div>
@@ -3888,8 +3980,8 @@
     </section>
 
     <!-- Pricing & Automations Section - Side by Side -->
-    <section class="pricing-section" id="precios" style="padding: 100px 20px; background: linear-gradient(135deg, #F0FDF4 0%, #FFFFFF 50%, #EFF6FF 100%);">
-        <div style="max-width: 1200px; margin: 0 auto;">
+    <section class="pricing-section" id="precios" style="padding: 100px 20px; background: linear-gradient(135deg, #F0FDF4 0%, #FFFFFF 50%, #EFF6FF 100%); overflow-x: hidden;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; box-sizing: border-box;">
             <div class="premium-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
                 
                 <!-- Pricing Column -->
@@ -3899,7 +3991,7 @@
                         <p style="font-size: 18px; color: #6b7280;">Un solo plan con todo incluido</p>
                     </div>
                     
-                    <div class="pricing-card featured animate-on-scroll" style="border: 3px solid #00b760;">
+                    <div class="pricing-card featured animate-on-scroll" style="border: 3px solid #00b760; position: relative; overflow: visible;">
                         <div class="pricing-badge">PLAN ÚNICO</div>
                         <h3 class="pricing-plan-title" style="font-size: 28px; margin-bottom: 16px;">Chatbot IA Completo</h3>
                         <div class="pricing-price" style="font-size: 48px; margin-bottom: 16px; color: #00b760;">99€ <span style="font-size: 20px; color: #6b7280;">/mes</span></div>
