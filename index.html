@@ -4165,8 +4165,7 @@
                 <p>Rellena tus datos y te preparo una demo adaptada a tu caso. Verás exactamente cómo el chatbot responderá las preguntas de tus clientes con la información de tu autoescuela.</p>
             </div>
             
-            <form class="contact-form" id="auditForm" action="https://getform.io/f/do0gxgtpcbi" method="POST">
-                <!-- Getform endpoint - Necesitas registrarte en getform.io para obtener tu Form ID -->
+            <form class="contact-form" id="auditForm" action="https://formspree.io/f/mdapgbwd" method="POST">
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="nombre">Nombre *</label>
@@ -4447,17 +4446,50 @@
             }
         });
 
-        // Contact Form Handler - Getform (Native Submit)
+        // Contact Form Handler - Formspree with Custom Success Modal
         const auditForm = document.getElementById('auditForm');
+        
         if (auditForm) {
             auditForm.addEventListener('submit', function(e) {
-                // Show loading state
+                e.preventDefault();
+                
                 const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
                 submitBtn.textContent = 'Enviando...';
                 submitBtn.disabled = true;
                 
-                // Let the form submit naturally to Getform
-                // Getform will redirect to their thank you page
+                const formData = new FormData(auditForm);
+                
+                fetch(auditForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Show custom success modal
+                        document.getElementById('successModal').classList.add('show');
+                        auditForm.reset();
+                    } else {
+                        response.json().then(data => {
+                            if (data.errors) {
+                                alert('Error: ' + data.errors.map(error => error.message).join(', '));
+                            } else {
+                                alert('Hubo un error al enviar el formulario. Por favor, intenta de nuevo.');
+                            }
+                        });
+                    }
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Hubo un error al enviar el formulario. Por favor, intenta de nuevo.');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
             });
         }
 
