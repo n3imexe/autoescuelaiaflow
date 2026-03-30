@@ -13,6 +13,29 @@
             box-sizing: border-box;
         }
 
+        section,
+        div,
+        header,
+        footer,
+        nav {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        img,
+        iframe,
+        video,
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .video-container,
+        .video-wrapper {
+            max-width: 100%;
+            overflow: hidden;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             -webkit-font-smoothing: antialiased;
@@ -22,6 +45,13 @@
             color: #1a1a1a;
             transition: background-color 0.3s ease, color 0.3s ease;
             min-height: 100vh;
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        html {
+            overflow-x: hidden;
+            max-width: 100%;
         }
 
         /* Grainy Texture Layer */
@@ -1380,7 +1410,7 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 24px;
         }
 
@@ -2566,6 +2596,36 @@
 
         /* Responsive - Mobile First */
         @media (max-width: 768px) {
+            /* Prevent horizontal scroll */
+            body,
+            html {
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+            }
+
+            section,
+            div,
+            .hero,
+            .products-section,
+            .features-section,
+            .pricing-section,
+            .contact-section,
+            .cta-section,
+            .footer {
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+
+            .products-container,
+            .features-container,
+            .pricing-container,
+            .contact-container,
+            .footer-container {
+                max-width: 100% !important;
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
             /* Navigation */
             .nav-links {
                 display: none;
@@ -2577,6 +2637,7 @@
 
             .nav-container {
                 padding: 12px 16px;
+                max-width: 100vw;
             }
 
             .logo {
@@ -2599,16 +2660,21 @@
             .hero {
                 padding: 60px 20px 80px;
                 min-height: auto;
+                max-width: 100vw;
+                overflow-x: hidden;
             }
 
             .hero h1 {
                 font-size: 32px;
                 line-height: 1.2;
+                max-width: 100%;
+                word-wrap: break-word;
             }
 
             .hero p {
                 font-size: 16px;
                 line-height: 1.5;
+                max-width: 100%;
             }
 
             .hero-subtext {
@@ -2658,26 +2724,37 @@
             .pricing-section,
             .faq-section,
             .contact-section {
-                padding: 60px 20px;
+                padding: 60px 24px;
+            }
+
+            .before-after-section {
+                padding: 60px 24px !important;
             }
 
             .section-header h2 {
                 font-size: 28px;
-                line-height: 1.2;
+                line-height: 1.3;
+                margin-bottom: 16px;
+                padding: 0 8px;
             }
 
             .section-header p {
-                font-size: 15px;
+                font-size: 16px;
+                line-height: 1.6;
+                padding: 0 8px;
             }
 
             /* Product Cards */
             .products-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
+                max-width: 100%;
             }
 
             .product-card {
-                padding: 24px;
+                padding: 28px 24px;
+                max-width: 100%;
+                word-wrap: break-word;
             }
 
             .product-icon {
@@ -2685,11 +2762,14 @@
             }
 
             .product-card h3 {
-                font-size: 18px;
+                font-size: 19px;
+                line-height: 1.3;
+                margin-bottom: 12px;
             }
 
             .product-card p {
-                font-size: 14px;
+                font-size: 15px;
+                line-height: 1.6;
             }
 
             /* Features Grid */
@@ -2699,22 +2779,33 @@
             }
 
             .feature-item {
-                padding: 24px;
+                padding: 28px 24px;
+            }
+
+            .feature-item h3 {
+                font-size: 19px;
+                margin-bottom: 12px;
+            }
+
+            .feature-item p {
+                font-size: 15px;
+                line-height: 1.6;
             }
 
             /* Trust Badges */
             .trust-badges {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
                 gap: 12px;
             }
 
             .trust-badge {
-                padding: 12px;
-                font-size: 13px;
+                padding: 16px 14px;
+                font-size: 14px;
             }
 
             .trust-badge-icon {
-                font-size: 20px;
+                font-size: 22px;
+                margin-right: 4px;
             }
 
             /* Pricing Cards */
@@ -2724,35 +2815,60 @@
             }
 
             .pricing-card {
-                padding: 28px 20px;
+                padding: 32px 24px;
             }
 
             .pricing-price {
-                font-size: 40px;
+                font-size: 42px;
             }
 
             .pricing-features {
-                font-size: 14px;
+                font-size: 15px;
+            }
+
+            .pricing-features li {
+                padding: 14px 0;
+                line-height: 1.5;
             }
 
             /* FAQ */
             .faq-item {
-                padding: 16px;
+                padding: 20px;
+                margin-bottom: 12px;
             }
 
             .faq-question {
-                font-size: 15px;
-                padding: 16px;
+                font-size: 16px;
+                padding: 18px;
+                line-height: 1.4;
             }
 
             .faq-answer {
-                font-size: 14px;
-                padding: 16px;
+                font-size: 15px;
+                padding: 18px;
+                line-height: 1.6;
             }
 
             /* Contact Form */
             .contact-form {
-                padding: 32px 20px;
+                padding: 36px 24px;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                font-size: 14px;
+                margin-bottom: 8px;
+                display: block;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                font-size: 15px;
+                padding: 12px 14px;
             }
 
             .form-row {
@@ -2817,20 +2933,27 @@
 
             /* Stats Bar */
             .stats-bar {
-                padding: 40px 20px;
+                padding: 28px 20px !important;
+                margin-top: 40px !important;
             }
 
             .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
+                grid-template-columns: 1fr !important;
+                gap: 24px !important;
             }
 
-            .stat-item div:first-child {
-                font-size: 36px;
+            .stats-grid > div {
+                padding: 16px 0;
             }
 
-            .stat-item div:last-child {
-                font-size: 13px;
+            .stat-number {
+                font-size: 36px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .stat-label {
+                font-size: 14px !important;
+                line-height: 1.4;
             }
 
             /* Before/After Section */
@@ -2839,15 +2962,81 @@
                 gap: 24px;
             }
 
+            .comparison-column {
+                padding: 28px 20px !important;
+            }
+
             .comparison-column h3 {
                 font-size: 22px;
             }
 
             .comparison-column span {
-                font-size: 14px;
+                font-size: 15px;
+                word-break: break-word;
+                line-height: 1.6;
+            }
+
+            .comparison-column li {
+                gap: 10px !important;
+            }
+
+            .comparison-column strong {
+                display: inline;
+                word-break: keep-all;
             }
 
             /* Google Sheets Section */
+            .google-sheets-section {
+                padding: 60px 20px !important;
+            }
+
+            .google-sheets-section .section-header h2 {
+                font-size: 28px !important;
+                line-height: 1.3;
+            }
+
+            .google-sheets-section .section-header p {
+                font-size: 16px !important;
+            }
+
+            .spreadsheet-container {
+                margin: 0 -20px 40px -20px !important;
+                border-radius: 0 !important;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+                overflow-x: auto;
+            }
+
+            .spreadsheet-container > div:first-child {
+                padding: 12px 16px !important;
+                flex-wrap: wrap;
+                gap: 8px !important;
+            }
+
+            .spreadsheet-container > div:first-child span {
+                font-size: 14px !important;
+            }
+
+            .spreadsheet-container > div:first-child > div:last-child {
+                font-size: 11px !important;
+                padding: 3px 8px !important;
+            }
+
+            .spreadsheet-container table {
+                font-size: 12px !important;
+                min-width: 600px;
+            }
+
+            .spreadsheet-container th,
+            .spreadsheet-container td {
+                padding: 10px 8px !important;
+                min-width: 100px !important;
+            }
+
+            .spreadsheet-container th:first-child,
+            .spreadsheet-container td:first-child {
+                min-width: 40px !important;
+            }
+
             .sheets-grid {
                 grid-template-columns: 1fr;
                 gap: 24px;
@@ -2995,17 +3184,86 @@
             }
 
             .trust-logos {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
                 gap: 12px;
+            }
+
+            /* Additional Features Grid */
+            .additional-features-grid {
+                grid-template-columns: 1fr !important;
+                gap: 12px !important;
+            }
+
+            .how-it-works-section > div > div:last-child {
+                padding: 28px 20px !important;
+                margin-top: 40px !important;
+            }
+
+            .how-it-works-section > div > div:last-child h3 {
+                font-size: 18px !important;
+                margin-bottom: 20px !important;
+            }
+
+            .additional-features-grid span {
+                font-size: 14px !important;
+                line-height: 1.5;
+            }
+
+            .additional-features-grid > div {
+                gap: 10px !important;
             }
 
             /* How It Works Section */
             .how-it-works-section {
-                padding: 60px 20px;
+                padding: 60px 20px !important;
+            }
+
+            .how-it-works-section .section-header {
+                margin-bottom: 40px !important;
             }
 
             .how-it-works-section .section-header h2 {
                 font-size: 28px;
+            }
+
+            .how-it-works-section .section-header p {
+                font-size: 16px;
+            }
+
+            .how-it-works-section > div > div:nth-child(2) {
+                grid-template-columns: 1fr !important;
+                gap: 32px !important;
+                margin-bottom: 40px !important;
+            }
+
+            .step-item {
+                padding: 0 16px;
+            }
+
+            .step-item > div:first-child {
+                width: 70px !important;
+                height: 70px !important;
+                margin-bottom: 20px !important;
+            }
+
+            .step-item > div:first-child span {
+                font-size: 36px !important;
+            }
+
+            .step-item > div:nth-child(2) {
+                font-size: 60px !important;
+                right: 20px !important;
+                top: 25px !important;
+            }
+
+            .step-item h3 {
+                font-size: 22px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .step-item p {
+                font-size: 15px !important;
+                line-height: 1.6;
             }
 
             /* Step Cards */
@@ -3350,7 +3608,7 @@
             <!-- Additional Features List -->
             <div style="background: linear-gradient(135deg, #f9fafb, #f3f4f6); border-radius: 16px; padding: 40px; margin-top: 60px;">
                 <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 24px; text-align: center;">Además incluye:</h3>
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                <div class="additional-features-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
                     <div style="display: flex; align-items: start; gap: 12px;">
                         <span style="font-size: 24px; flex-shrink: 0;">✓</span>
                         <span style="font-size: 16px; color: #4b5563;"><strong>Multicanal:</strong> Web, WhatsApp, Facebook e Instagram</span>
@@ -3543,9 +3801,9 @@
                 <p style="font-size: 20px; color: #6b7280;">De perder clientes a captar leads 24/7</p>
             </div>
             
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+            <div class="comparison-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
                 <!-- BEFORE -->
-                <div style="background: linear-gradient(135deg, #fef2f2, #fee2e2); border: 2px solid #fecaca; border-radius: 16px; padding: 40px;">
+                <div class="comparison-column" style="background: linear-gradient(135deg, #fef2f2, #fee2e2); border: 2px solid #fecaca; border-radius: 16px; padding: 40px;">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
                         <div style="width: 48px; height: 48px; background: #dc2626; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
                             <span style="font-size: 24px;">❌</span>
@@ -3577,7 +3835,7 @@
                 </div>
 
                 <!-- AFTER -->
-                <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #86efac; border-radius: 16px; padding: 40px; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);">
+                <div class="comparison-column featured" style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #86efac; border-radius: 16px; padding: 40px; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
                         <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
                             <span style="font-size: 24px;">✓</span>
@@ -3611,7 +3869,7 @@
 
             <!-- Stats Bar -->
             <div class="stats-bar" style="margin-top: 60px; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #86efac; border-radius: 16px; padding: 48px; text-align: center; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);">
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+                <div class="stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
                     <div>
                         <div class="stat-number" style="font-size: 48px; font-weight: 800; color: #059669; margin-bottom: 8px;">24/7</div>
                         <div class="stat-label" style="font-size: 16px; color: #065f46; font-weight: 600;">Disponibilidad continua</div>
@@ -3632,7 +3890,7 @@
     <!-- Pricing & Automations Section - Side by Side -->
     <section class="pricing-section" id="precios" style="padding: 100px 20px; background: linear-gradient(135deg, #F0FDF4 0%, #FFFFFF 50%, #EFF6FF 100%);">
         <div style="max-width: 1200px; margin: 0 auto;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+            <div class="premium-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
                 
                 <!-- Pricing Column -->
                 <div>
