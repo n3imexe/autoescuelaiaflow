@@ -4165,7 +4165,7 @@
                 <p>Rellena tus datos y te preparo una demo adaptada a tu caso. Verás exactamente cómo el chatbot responderá las preguntas de tus clientes con la información de tu autoescuela.</p>
             </div>
             
-            <form class="contact-form" id="auditForm" action="https://getform.io/f/YOUR_FORM_ID" method="POST">
+            <form class="contact-form" id="auditForm" action="https://getform.io/f/do0gxgtpcbi" method="POST">
                 <!-- Getform endpoint - Necesitas registrarte en getform.io para obtener tu Form ID -->
                 <div class="form-grid">
                     <div class="form-group">
@@ -4463,10 +4463,7 @@
                 try {
                     const response = await fetch(auditForm.action, {
                         method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
+                        body: formData
                     });
                     
                     if (response.ok) {
@@ -4474,9 +4471,11 @@
                         document.getElementById('successModal').classList.add('show');
                         auditForm.reset();
                     } else {
+                        console.error('Error response:', response.status, response.statusText);
                         alert('Hubo un error al enviar el formulario. Por favor, intenta de nuevo.');
                     }
                 } catch (error) {
+                    console.error('Error al enviar:', error);
                     alert('Hubo un error al enviar el formulario. Por favor, intenta de nuevo.');
                 } finally {
                     submitBtn.textContent = originalText;
