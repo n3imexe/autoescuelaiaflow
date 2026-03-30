@@ -1449,8 +1449,14 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 24px;
+        }
+
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -1601,6 +1607,17 @@
             line-height: 1;
             margin-bottom: 8px;
             letter-spacing: -0.02em;
+        }
+
+        .stat-number::after {
+            content: ':';
+        }
+
+        /* Hide colons on desktop (screens wider than 768px) */
+        @media (min-width: 769px) {
+            .stat-number::after {
+                content: '';
+            }
         }
 
         .stat-label {
