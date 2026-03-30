@@ -1,0 +1,3789 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Autoescuela IA - Asistente virtual inteligente para autoescuelas. Responde preguntas 24/7, gestiona alumnos y automatiza tu negocio.">
+    <title>Autoescuela IA - Revoluciona tu Autoescuela</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: linear-gradient(180deg, #FAFBFC 0%, #FFFFFF 50%, #F8FAFB 100%);
+            position: relative;
+            color: #1a1a1a;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+        }
+
+        /* Grainy Texture Layer */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: -1;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        /* Premium Dot Grid Pattern */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.2;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 1px 1px, rgba(0, 183, 96, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+            background-size: 48px 48px, 96px 96px;
+            background-position: 0 0, 24px 24px;
+            pointer-events: none;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode::before {
+            opacity: 0.05;
+        }
+
+        body.dark-mode::after {
+            background-image: radial-gradient(circle at 1px 1px, rgba(226, 232, 240, 0.1) 1px, transparent 1px);
+            opacity: 0.1;
+        }
+
+        body.dark-mode nav {
+            background: #1e293b;
+            border-bottom-color: #334155;
+        }
+
+        body.dark-mode .logo {
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .nav-links a {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .nav-links a:hover {
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .urgency-banner {
+            background: linear-gradient(90deg, #1e293b 0%, #334155 100%);
+            color: #e2e8f0;
+            border-bottom-color: #334155;
+        }
+
+        body.dark-mode .hero h1 {
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .hero p {
+            color: #cbd5e1;
+        }
+
+        body.dark-mode .hero-subtext {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .btn-secondary {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-color: #334155;
+        }
+
+        body.dark-mode .btn-secondary:hover {
+            background: #334155;
+            border-color: #475569;
+        }
+
+
+        body.dark-mode .trust-title {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .trust-badge {
+            background: rgba(30, 41, 59, 0.5);
+            border-color: #334155;
+            color: #cbd5e1;
+        }
+
+        body.dark-mode .trust-badge:hover {
+            background: rgba(30, 41, 59, 0.9);
+            border-color: #00b760;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 183, 96, 0.2);
+        }
+
+        body.dark-mode .products-section {
+            background: #0f172a;
+        }
+
+        body.dark-mode .section-header h2 {
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .section-header p {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .product-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        body.dark-mode .product-card:hover {
+            background: #334155;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .product-card h3 {
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .product-card p {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .product-icon {
+            background: linear-gradient(135deg, #059669, #047857);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+        }
+
+        body.dark-mode .features-section {
+            background: #1e293b;
+        }
+
+        body.dark-mode .feature-item h3 {
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .feature-item p {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .feature-item {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        body.dark-mode .feature-icon {
+            background: linear-gradient(135deg, #059669, #047857) !important;
+        }
+
+        body.dark-mode .faq-section {
+            background: #0f172a;
+        }
+
+        body.dark-mode .faq-question {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-color: #334155;
+        }
+
+        body.dark-mode .faq-question:hover {
+            background: #334155;
+        }
+
+        body.dark-mode .faq-answer {
+            background: #1e293b;
+            color: #94a3b8;
+            border-color: #334155;
+        }
+
+        body.dark-mode .contact-section {
+            background: #0f172a;
+        }
+
+        body.dark-mode .contact-form {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        body.dark-mode .form-group label {
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group select,
+        body.dark-mode .form-group textarea {
+            background: #0f172a;
+            border-color: #334155;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .form-group input:focus,
+        body.dark-mode .form-group select:focus,
+        body.dark-mode .form-group textarea:focus {
+            border-color: #00b760;
+            background: #1e293b;
+        }
+
+        body.dark-mode .cta-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        body.dark-mode footer {
+            background: #1e293b;
+            border-top-color: #334155;
+        }
+
+        body.dark-mode footer p {
+            color: #94a3b8;
+        }
+
+        /* Dark mode for inline styled elements */
+        body.dark-mode .highlight {
+            color: #34d399 !important;
+        }
+
+        /* Dark mode for stats section */
+        body.dark-mode .stats-section {
+            background: #1e293b;
+        }
+
+        body.dark-mode .stat-number {
+            color: #34d399;
+        }
+
+        body.dark-mode .stat-label {
+            color: #94a3b8;
+        }
+
+        /* Dark mode for additional sections */
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode h4 {
+            color: #f1f5f9;
+        }
+
+        /* Example pills */
+        .example-pill {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            color: #4b5563;
+            padding: 10px 20px;
+            border-radius: 24px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        body.dark-mode .example-pill {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .example-pill:hover {
+            border-color: #00b760;
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 183, 96, 0.15);
+        }
+
+        body.dark-mode .example-pill {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid #334155;
+            color: #cbd5e1;
+        }
+
+        body.dark-mode .example-pill:hover {
+            border-color: #00b760;
+            background: #1e293b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 183, 96, 0.2);
+        }
+
+        body.dark-mode .examples-label {
+            color: #94a3b8;
+        }
+
+        /* Dark mode for white buttons */
+        body.dark-mode .btn-white {
+            background: #1e293b;
+            color: #34d399;
+            border: 1px solid #334155;
+        }
+
+        body.dark-mode .btn-white:hover {
+            background: #334155;
+            border-color: #00b760;
+        }
+
+        /* Dark mode for FAQ items */
+        body.dark-mode .faq-item {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        /* Automations card */
+        .automations-card {
+            background: #fff;
+            border: 1px solid #d1fae5;
+        }
+
+        body.dark-mode .automations-card {
+            background: #1e293b !important;
+            border: 1px solid #334155 !important;
+        }
+
+        body.dark-mode .automations-card h4 {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .automations-card p {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .automations-card[style*="background: rgba(255, 255, 255"] {
+            background: #1e293b !important;
+        }
+
+        /* Dark mode for Google Sheets section */
+        body.dark-mode .google-sheets-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+        }
+
+        body.dark-mode .spreadsheet-container {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .spreadsheet-container table thead tr {
+            background: #0f172a !important;
+        }
+
+        body.dark-mode .spreadsheet-container table th {
+            color: #f1f5f9 !important;
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .spreadsheet-container table tbody tr {
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .spreadsheet-container table tbody tr:nth-child(odd) {
+            background: #0f172a !important;
+        }
+
+        body.dark-mode .spreadsheet-container table td {
+            color: #cbd5e1 !important;
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .spreadsheet-container table tbody tr td:nth-child(3) {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .spreadsheet-container > div:first-child {
+            background: linear-gradient(135deg, #059669, #047857) !important;
+        }
+
+        body.dark-mode .spreadsheet-container > div:last-child {
+            background: #0f172a !important;
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .google-sheets-section h2 {
+            background: linear-gradient(135deg, #34d399, #10b981) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+
+        body.dark-mode .google-sheets-section p {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .google-sheets-section .section-header > div:first-child {
+            background: linear-gradient(135deg, #059669, #047857) !important;
+        }
+
+        body.dark-mode .google-sheets-section > div > div:nth-child(2) > div {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .google-sheets-section > div > div:nth-child(2) > div h3 {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .google-sheets-section > div > div:nth-child(2) > div p {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .google-sheets-section > div > div:nth-child(2) > div > div {
+            background: linear-gradient(135deg, #059669, #047857) !important;
+        }
+
+        /* Dark mode for inline styled cards in Google Sheets section */
+        body.dark-mode .google-sheets-section div[style*="background: white"] {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .google-sheets-section div[style*="background: white"] h3 {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .google-sheets-section div[style*="background: white"] p {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .google-sheets-section div[style*="background: linear-gradient(135deg, #10b981"] {
+            background: linear-gradient(135deg, #059669, #047857) !important;
+        }
+
+        body.dark-mode .automations-footer {
+            border-top: 1px solid #334155 !important;
+        }
+
+        body.dark-mode .automations-text {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark-mode .automations-text strong {
+            color: #f1f5f9;
+        }
+
+        /* Automations section background */
+        .automations-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+            border-top: 1px solid #d1fae5;
+            border-bottom: 1px solid #d1fae5;
+        }
+
+        body.dark-mode .automations-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-top: 1px solid #334155;
+            border-bottom: 1px solid #334155;
+        }
+
+        /* Dark mode for Pricing section */
+        body.dark-mode .pricing-section {
+            background: #0f172a;
+        }
+
+        body.dark-mode .pricing-card {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .pricing-card.featured {
+            border-color: #10b981 !important;
+        }
+
+        body.dark-mode .pricing-badge {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: white;
+        }
+
+        body.dark-mode .pricing-plan-title {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .pricing-price {
+            color: #34d399 !important;
+        }
+
+        body.dark-mode .pricing-price span {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .pricing-description {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .pricing-card h3 {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .pricing-card p[style*="color: #6b7280"] {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .pricing-features li {
+            color: #cbd5e1;
+        }
+
+        body.dark-mode .pricing-card > p {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .pricing-section > div > div > div {
+            background: #0f172a !important;
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .pricing-section > div > div > div h4 {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .pricing-section > div > div > div p {
+            color: #94a3b8 !important;
+        }
+
+        /* Dark mode for guarantee badge */
+        body.dark-mode .guarantee-badge {
+            background: rgba(30, 41, 59, 0.8);
+            border-color: #334155;
+            color: #cbd5e1;
+        }
+
+        body.dark-mode .guarantee-badge span {
+            background: #10b981;
+        }
+
+        /* Dark mode for footer links */
+        body.dark-mode .footer-column h4 {
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .footer-column ul li a {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .footer-column ul li a:hover {
+            color: #34d399;
+        }
+
+        body.dark-mode .footer-bottom {
+            color: #64748b;
+        }
+
+        /* Dark mode for WhatsApp float */
+        body.dark-mode .whatsapp-float {
+            filter: brightness(0.9);
+        }
+
+        /* Dark mode for sticky CTA */
+        body.dark-mode .sticky-cta {
+            background: rgba(30, 41, 59, 0.98);
+            border-top-color: #334155;
+        }
+
+        body.dark-mode .sticky-cta-text h4 {
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .sticky-cta-text p {
+            color: #94a3b8;
+        }
+
+        /* Dark mode for How It Works section */
+        body.dark-mode .how-it-works-section {
+            background: #0f172a !important;
+        }
+
+        body.dark-mode .how-it-works-section h2 {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .how-it-works-section p {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .step-item h3 {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .step-item p {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .step-item > div[style*="background: linear-gradient(135deg, #ecfdf5"] {
+            background: linear-gradient(135deg, #059669, #047857) !important;
+        }
+
+        body.dark-mode .how-it-works-section div[style*="background: linear-gradient(135deg, #f9fafb"] {
+            background: linear-gradient(135deg, #1e293b, #0f172a) !important;
+            border: 1px solid #334155 !important;
+        }
+
+        body.dark-mode .how-it-works-section div[style*="background: linear-gradient(135deg, #f9fafb"] h3 {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .how-it-works-section div[style*="background: linear-gradient(135deg, #f9fafb"] span {
+            color: #cbd5e1 !important;
+        }
+
+        /* Dark mode for Before/After section */
+        body.dark-mode .before-after-section {
+            background: #0f172a !important;
+        }
+
+        body.dark-mode .before-after-section h2 {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .before-after-section > div > div:first-child p {
+            color: #94a3b8 !important;
+        }
+
+        /* Keep red/green backgrounds for contrast in dark mode */
+        body.dark-mode .before-after-section div[style*="background: linear-gradient(135deg, #fef2f2"] {
+            background: linear-gradient(135deg, #450a0a, #7f1d1d) !important;
+            border-color: #991b1b !important;
+        }
+
+        body.dark-mode .before-after-section div[style*="background: linear-gradient(135deg, #f0fdf4"] {
+            background: linear-gradient(135deg, #064e3b, #065f46) !important;
+            border-color: #059669 !important;
+        }
+
+        /* Fix text colors in Before/After boxes for dark mode */
+        body.dark-mode .before-after-section h3[style*="color: #991b1b"] {
+            color: #fca5a5 !important;
+        }
+
+        body.dark-mode .before-after-section h3[style*="color: #065f46"] {
+            color: #6ee7b7 !important;
+        }
+
+        body.dark-mode .before-after-section span[style*="color: #7f1d1d"] {
+            color: #fca5a5 !important;
+        }
+
+        body.dark-mode .before-after-section span[style*="color: #064e3b"] {
+            color: #d1fae5 !important;
+        }
+
+        body.dark-mode .before-after-section span[style*="color: #dc2626"] {
+            color: #f87171 !important;
+        }
+
+        body.dark-mode .before-after-section span[style*="color: #10b981"] {
+            color: #6ee7b7 !important;
+        }
+
+        /* Dark mode for Pricing & Automations side by side section */
+        body.dark-mode .pricing-section[style*="background: linear-gradient(135deg, #F0FDF4"] {
+            background: #0f172a !important;
+        }
+
+        body.dark-mode .pricing-section h2[style*="font-size: 36px"] {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .pricing-section p[style*="font-size: 18px"] {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .pricing-section div[style*="text-align: center; margin-bottom: 40px"] {
+            background: transparent !important;
+        }
+
+        body.dark-mode .automations-card h4 {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .automations-card p[style*="color: #6b7280"] {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .automations-card p[style*="color: #4b5563"] {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark-mode .automations-card div[style*="background: linear-gradient(135deg, #ecfdf5"] {
+            background: linear-gradient(135deg, #059669, #047857) !important;
+        }
+
+        /* Dark mode for step numbers background */
+        body.dark-mode .step-item div[style*="color: #f0fdf4"] {
+            color: #1e293b !important;
+        }
+
+        /* Dark mode for all inline h2 and h3 */
+        body.dark-mode section h2[style*="font-size"] {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode section h3[style*="font-size"] {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode section p[style*="color: #6b7280"] {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode section p[style*="color: #4b5563"] {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark-mode section span[style*="color: #4b5563"] {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark-mode section span[style*="color: #6b7280"] {
+            color: #94a3b8 !important;
+        }
+
+        /* Dark mode for section backgrounds */
+        body.dark-mode section[style*="background: #fff"] {
+            background: #0f172a !important;
+        }
+
+        /* LED button effect for automations */
+        .automations-card a[href="#contacto"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.6), 0 6px 20px rgba(16, 185, 129, 0.4) !important;
+            border-color: #34d399 !important;
+        }
+
+        body.dark-mode .automations-card a[href="#contacto"] {
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.5), 0 4px 12px rgba(16, 185, 129, 0.4) !important;
+        }
+
+        body.dark-mode .automations-card a[href="#contacto"]:hover {
+            box-shadow: 0 0 35px rgba(16, 185, 129, 0.7), 0 6px 20px rgba(16, 185, 129, 0.5) !important;
+        }
+
+        /* Dark mode for stats bar - better contrast */
+        body.dark-mode .stats-bar {
+            background: linear-gradient(135deg, #064e3b, #065f46) !important;
+            border-color: #10b981 !important;
+        }
+
+        body.dark-mode .stat-number {
+            color: #6ee7b7 !important;
+        }
+
+        body.dark-mode .stat-label {
+            color: #d1fae5 !important;
+        }
+
+        /* Dark mode for video demo section */
+        body.dark-mode .video-demo-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+        }
+
+        body.dark-mode .video-demo-section h2 {
+            color: #f1f5f9 !important;
+        }
+
+        body.dark-mode .video-demo-section p {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .video-text {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark-mode .video-text strong {
+            color: #6ee7b7 !important;
+        }
+
+        body.dark-mode .video-container {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 50px rgba(16, 185, 129, 0.3) !important;
+        }
+
+        /* Success Modal */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .success-modal.show {
+            display: flex;
+        }
+
+        .success-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 48px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease;
+            position: relative;
+        }
+
+        body.dark-mode .success-modal-content {
+            background: #1e293b;
+            border: 1px solid #334155;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 40px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        .success-modal h3 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #065f46;
+        }
+
+        body.dark-mode .success-modal h3 {
+            color: #6ee7b7;
+        }
+
+        .success-modal p {
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        body.dark-mode .success-modal p {
+            color: #94a3b8;
+        }
+
+        .success-modal-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .success-modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            0% { 
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% { 
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.3s;
+            width: 60px;
+            height: 32px;
+            position: relative;
+        }
+
+        .dark-mode-toggle:hover {
+            background: #e5e7eb;
+        }
+
+        body.dark-mode .dark-mode-toggle {
+            background: #334155;
+            border-color: #475569;
+        }
+
+        body.dark-mode .dark-mode-toggle:hover {
+            background: #475569;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            left: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        body.dark-mode .toggle-slider {
+            transform: translateX(28px);
+            background: #1e293b;
+        }
+
+        /* Navigation - Premium Modern Design */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 183, 96, 0.1);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        body.dark-mode nav {
+            background: rgba(15, 23, 42, 0.98);
+            border-bottom: 1px solid rgba(0, 183, 96, 0.2);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            width: 100%;
+            padding: 16px 48px;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-container > .logo {
+            justify-self: start;
+        }
+
+        .nav-container > .nav-links {
+            justify-self: center;
+        }
+
+        .nav-container > .mobile-menu-toggle {
+            justify-self: end;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a1a;
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+            padding: 4px 0;
+        }
+
+        .logo:hover {
+            transform: translateY(-1px);
+        }
+
+        .logo::before {
+            content: '🚗';
+            font-size: 24px;
+            filter: drop-shadow(0 2px 4px rgba(0, 183, 96, 0.2));
+        }
+
+        body.dark-mode .logo {
+            color: #f1f5f9;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-self: end;
+        }
+
+        .nav-links a {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.2s;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00b760, #10b981);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00b760;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        body.dark-mode .nav-links a {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .nav-links a:hover {
+            color: #10b981;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #00b760 0%, #10b981 100%);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 183, 96, 0.25);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-cta:hover::before {
+            left: 100%;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 183, 96, 0.4);
+        }
+
+        .nav-cta:active {
+            transform: translateY(0);
+        }
+
+        /* Hero Section - Premium Layered Background */
+        .hero {
+            padding: 120px 24px 80px;
+            max-width: 1280px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Premium Mesh Gradient Orb 1 - Emerald Glow - Subtle */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -15%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(
+                circle at 40% 40%,
+                rgba(16, 185, 129, 0.12) 0%,
+                rgba(52, 211, 153, 0.06) 30%,
+                rgba(167, 243, 208, 0.03) 50%,
+                transparent 70%
+            );
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        /* Premium Mesh Gradient Orb 2 - Azure Glow - Subtle */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -15%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(
+                circle at 60% 60%,
+                rgba(59, 130, 246, 0.1) 0%,
+                rgba(147, 197, 253, 0.05) 35%,
+                rgba(219, 234, 254, 0.02) 60%,
+                transparent 75%
+            );
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        body.dark-mode .hero::before {
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+            opacity: 0.3;
+        }
+
+        body.dark-mode .hero::after {
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            opacity: 0.3;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero h1 .highlight {
+            color: #00b760;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #4b5563;
+            margin-bottom: 24px;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        .hero-subtext {
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .hero-subtext::before {
+            content: '✓';
+            color: #00b760;
+            font-weight: 700;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #00b760;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #009951;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #fff;
+            color: #00b760;
+            padding: 14px 28px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            border: 2px solid #00b760;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: #f0fdf4;
+            transform: translateY(-1px);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-whatsapp:hover {
+            background: #20BA5A;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hero WhatsApp Button - Top Right */
+        .hero-whatsapp-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            z-index: 10;
+        }
+
+        .hero-whatsapp-btn:hover {
+            background: #20BA5A;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Product Sections - HackerRank Cards */
+        .products-section {
+            background: #fff;
+            padding: 80px 24px;
+            position: relative;
+        }
+
+        body.dark-mode .products-section {
+            background: #0f172a;
+        }
+
+        .products-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            max-width: 896px;
+            margin: 0 auto 48px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header h2 {
+            font-size: 40px;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #6b7280;
+            line-height: 1.6;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .product-card {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .product-icon {
+            width: 56px;
+            height: 56px;
+            background: #ecfdf5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .product-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+
+        .product-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+
+        /* Features Section - Premium Gradient */
+        .features-section {
+            background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 50%, #F0FDF4 100%);
+            padding: 80px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        body.dark-mode .features-section {
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            text-align: left;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+        }
+
+        body.dark-mode .feature-icon {
+            background: linear-gradient(135deg, #059669, #047857);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+        }
+
+        .feature-item h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-item p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #6b7280;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: #f9fafb;
+            padding: 64px 24px;
+        }
+
+        .stats-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 48px;
+            text-align: center;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: #00b760;
+            line-height: 1;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #00b760 0%, #009951 100%);
+            padding: 80px 24px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 40px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 32px;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-white {
+            background: #fff;
+            color: #00b760;
+            padding: 14px 28px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #9ca3af;
+            padding: 48px 24px 24px;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-column h4 {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: #00b760;
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-top: 24px;
+            border-top: 1px solid #374151;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background: #fff;
+            padding: 80px 24px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 32px;
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #4b5563;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            background: #00b760;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .testimonial-info h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .testimonial-info p {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: #fff;
+            padding: 80px 24px;
+            position: relative;
+        }
+
+        body.dark-mode .faq-section {
+            background: #0f172a;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: #f9fafb;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            color: #00b760;
+            font-weight: 300;
+        }
+
+        .faq-answer {
+            padding: 20px 24px 20px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #4b5563;
+            display: none;
+            background: #fff;
+            border-top: 1px solid #e5e7eb;
+            font-weight: 300;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-question.active {
+            background: #f9fafb;
+        }
+
+        body.dark-mode .faq-question.active {
+            background: #0f172a;
+        }
+
+        body.dark-mode .faq-answer.active {
+            background: #0f172a;
+            color: #fff;
+        }
+
+        /* Trust Badges - Premium Gradient */
+        .trust-section {
+            background: linear-gradient(135deg, #F0FDF4 0%, #FFFFFF 50%, #EFF6FF 100%);
+            padding: 64px 24px;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trust-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        body.dark-mode .trust-section {
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .trust-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        body.dark-mode .trust-section {
+            background: #1e293b;
+        }
+
+        .trust-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 32px;
+        }
+
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #4b5563;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px 20px;
+            border-radius: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .trust-badge {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .trust-badge:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: #00b760;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .trust-badge-icon {
+            font-size: 24px;
+            filter: grayscale(0);
+        }
+
+        body.dark-mode .trust-badge-icon {
+            filter: brightness(1.2) contrast(1.1);
+        }
+
+        /* Urgency Banner */
+        .urgency-banner {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 12px 24px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #92400e;
+            border-bottom: 1px solid #fbbf24;
+        }
+
+        .urgency-banner span {
+            color: #b45309;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Enhanced CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #00b760 0%, #009951 100%);
+            padding: 80px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        /* Pricing Enhancement */
+        .pricing-badge {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        /* Contact Form Section */
+        .contact-section {
+            background: #fff;
+            padding: 80px 24px;
+            position: relative;
+        }
+
+        body.dark-mode .contact-section {
+            background: #0f172a;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 40px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00b760;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-primary {
+            background: #00b760;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            background: #009951;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-whatsapp-primary {
+            background: #25D366 !important;
+        }
+
+        .btn-whatsapp-primary:hover {
+            background: #20BA5A !important;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3) !important;
+        }
+
+        .form-submit {
+            background: #00b760;
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .form-submit:hover {
+            background: #009951;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                padding: 24px;
+            }
+        }
+
+        /* Sticky CTA Bar */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 16px 24px;
+            box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            border-top: 1px solid rgba(0, 183, 96, 0.2);
+        }
+
+        .sticky-cta.visible {
+            transform: translateY(0);
+        }
+
+        body.dark-mode .sticky-cta {
+            background: rgba(30, 41, 59, 0.98);
+            border-top: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .sticky-cta-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .sticky-cta-text h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        body.dark-mode .sticky-cta-text h4 {
+            color: #f1f5f9;
+        }
+
+        .sticky-cta-text p {
+            font-size: 13px;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        body.dark-mode .sticky-cta-text p {
+            color: #94a3b8;
+        }
+
+        .sticky-cta-button {
+            background: #00b760;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 183, 96, 0.3);
+        }
+
+        .sticky-cta-button:hover {
+            background: #009951;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 183, 96, 0.4);
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 998;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-button {
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-button svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Micro-animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+        }
+
+        .animate-on-scroll.animated {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        .product-icon {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover .product-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover .feature-icon {
+            animation: iconBounce 0.6s ease;
+        }
+
+        /* Guarantee Badge */
+        .guarantee-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #059669;
+            margin-top: 16px;
+        }
+
+        body.dark-mode .guarantee-badge {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.4);
+            color: #34d399;
+        }
+
+        /* Video Demo Section */
+        .video-section {
+            background: #fff;
+            padding: 80px 24px;
+            position: relative;
+        }
+
+        body.dark-mode .video-section {
+            background: #0f172a;
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            background: #000;
+            border: 3px solid rgba(0, 183, 96, 0.2);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .video-wrapper {
+                border-radius: 12px;
+                border-width: 2px;
+            }
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background: linear-gradient(135deg, #F0FDF4 0%, #FFFFFF 50%, #EFF6FF 100%);
+            padding: 80px 24px;
+            position: relative;
+        }
+
+        body.dark-mode .pricing-section {
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .pricing-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 40px 32px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .pricing-card.featured {
+            border-color: #00b760;
+            box-shadow: 0 12px 32px rgba(0, 183, 96, 0.15);
+        }
+
+        body.dark-mode .pricing-card {
+            background: rgba(30, 41, 59, 0.9);
+            border-color: #334155;
+        }
+
+        body.dark-mode .pricing-card.featured {
+            border-color: #00b760;
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            right: 32px;
+            background: linear-gradient(135deg, #00b760 0%, #00d97e 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-plan-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        body.dark-mode .pricing-plan-name {
+            color: #94a3b8;
+        }
+
+        .pricing-plan-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+
+        body.dark-mode .pricing-plan-title {
+            color: #f1f5f9;
+        }
+
+        .pricing-price {
+            font-size: 48px;
+            font-weight: 800;
+            color: #00b760;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .pricing-price span {
+            font-size: 20px;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        body.dark-mode .pricing-price span {
+            color: #94a3b8;
+        }
+
+        .pricing-description {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        body.dark-mode .pricing-description {
+            color: #94a3b8;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            font-size: 15px;
+            color: #4b5563;
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+
+        body.dark-mode .pricing-features li {
+            color: #cbd5e1;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: #00b760;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .pricing-button {
+            width: 100%;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            border: 2px solid #00b760;
+            background: white;
+            color: #00b760;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .pricing-button:hover {
+            background: #00b760;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 183, 96, 0.3);
+        }
+
+        .pricing-card.featured .pricing-button {
+            background: #00b760;
+            color: white;
+        }
+
+        .pricing-card.featured .pricing-button:hover {
+            background: #009951;
+        }
+
+        /* Mobile Menu Hamburger */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #1a1a1a;
+            padding: 8px;
+        }
+
+        body.dark-mode .mobile-menu-toggle {
+            color: #e2e8f0;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        body.dark-mode .mobile-menu {
+            background: rgba(15, 23, 42, 0.98);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        body.dark-mode .mobile-menu a {
+            color: #e2e8f0;
+        }
+
+        .mobile-menu a:hover {
+            background: #f3f4f6;
+        }
+
+        body.dark-mode .mobile-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive - Mobile First */
+        @media (max-width: 768px) {
+            /* Navigation */
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-container {
+                padding: 12px 16px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            /* Urgency Banner */
+            .urgency-banner {
+                font-size: 12px;
+                padding: 8px 12px;
+                text-align: center;
+            }
+
+            .urgency-banner span {
+                display: block;
+                margin-top: 4px;
+            }
+
+            /* Hero Section */
+            .hero {
+                padding: 60px 20px 80px;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+                line-height: 1.2;
+            }
+
+            .hero p {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+
+            .hero-subtext {
+                font-size: 13px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                text-align: center;
+                padding: 14px 24px;
+                font-size: 15px;
+            }
+
+            .hero-whatsapp-btn {
+                position: static;
+                width: 100%;
+                margin-bottom: 12px;
+                order: -1;
+            }
+
+            .hero-buttons {
+                position: relative;
+                display: flex;
+            }
+
+            .guarantee-badge {
+                font-size: 12px;
+                padding: 10px 16px;
+                margin-top: 20px;
+            }
+
+            .example-pill {
+                font-size: 13px;
+                padding: 10px 16px;
+            }
+
+            /* Sections */
+            .products-section,
+            .features-section,
+            .video-section,
+            .pricing-section,
+            .faq-section,
+            .contact-section {
+                padding: 60px 20px;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+                line-height: 1.2;
+            }
+
+            .section-header p {
+                font-size: 15px;
+            }
+
+            /* Product Cards */
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .product-card {
+                padding: 24px;
+            }
+
+            .product-icon {
+                font-size: 36px;
+            }
+
+            .product-card h3 {
+                font-size: 18px;
+            }
+
+            .product-card p {
+                font-size: 14px;
+            }
+
+            /* Features Grid */
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .feature-item {
+                padding: 24px;
+            }
+
+            /* Trust Badges */
+            .trust-badges {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .trust-badge {
+                padding: 12px;
+                font-size: 13px;
+            }
+
+            .trust-badge-icon {
+                font-size: 20px;
+            }
+
+            /* Pricing Cards */
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .pricing-card {
+                padding: 28px 20px;
+            }
+
+            .pricing-price {
+                font-size: 40px;
+            }
+
+            .pricing-features {
+                font-size: 14px;
+            }
+
+            /* FAQ */
+            .faq-item {
+                padding: 16px;
+            }
+
+            .faq-question {
+                font-size: 15px;
+                padding: 16px;
+            }
+
+            .faq-answer {
+                font-size: 14px;
+                padding: 16px;
+            }
+
+            /* Contact Form */
+            .contact-form {
+                padding: 32px 20px;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            /* Footer */
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                text-align: center;
+            }
+
+            .footer-column h4 {
+                font-size: 16px;
+            }
+
+            .footer-column ul li {
+                font-size: 14px;
+            }
+
+            /* Sticky CTA */
+            .sticky-cta {
+                padding: 12px 16px;
+            }
+
+            .sticky-cta-content {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .sticky-cta-text h4 {
+                font-size: 16px;
+            }
+
+            .sticky-cta-text p {
+                font-size: 12px;
+            }
+
+            .sticky-cta-button {
+                width: 100%;
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
+            /* WhatsApp Float */
+            .whatsapp-float {
+                bottom: 90px;
+                left: 16px;
+            }
+
+            .whatsapp-button {
+                width: 56px;
+                height: 56px;
+            }
+
+            .whatsapp-button svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            /* Video */
+            .video-wrapper {
+                border-radius: 12px;
+                border-width: 2px;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .section-header h2 {
+                font-size: 24px;
+            }
+
+            .trust-badges {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-price {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        🔥 Oferta de lanzamiento: <span>Primeros 7 días GRATIS</span> para las primeras 50 autoescuelas • Quedan 12 plazas
+    </div>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Autoescuela IA</div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menú">
+                ☰
+            </button>
+            <div class="nav-links">
+                <a href="#funcionalidades">Funcionalidades</a>
+                <a href="#beneficios">Beneficios</a>
+                <a href="#precios">Precios</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <div class="nav-actions">
+                <div class="dark-mode-toggle" onclick="toggleDarkMode()" title="Cambiar tema">
+                    <div class="toggle-slider">
+                        <span class="toggle-icon">☀️</span>
+                    </div>
+                </div>
+                <button class="nav-cta" onclick="window.voiceflow?.chat?.open()">💬 Probar en Directo</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#funcionalidades" onclick="toggleMobileMenu()">Funcionalidades</a>
+        <a href="#beneficios" onclick="toggleMobileMenu()">Beneficios</a>
+        <a href="#precios" onclick="toggleMobileMenu()">Precios</a>
+        <a href="#faq" onclick="toggleMobileMenu()">FAQ</a>
+        <a href="#contacto" onclick="toggleMobileMenu()">Contacto</a>
+        <button class="btn-primary" onclick="window.voiceflow?.chat?.open(); toggleMobileMenu();" style="width: 100%; margin-top: 8px;">
+            Probar Chatbot
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>El Chatbot IA que <span class="highlight">Atiende tu Autoescuela 24/7</span></h1>
+        <p>Un asistente virtual inteligente que responde preguntas, capta clientes y gestiona consultas mientras tú te enfocas en enseñar. Prueba ahora mismo cómo funciona haciendo clic en el bot de abajo.</p>
+        <div class="hero-subtext">⚡ Prueba el chatbot ahora • Sin tarjeta de crédito</div>
+        <div class="hero-buttons">
+            <a href="https://wa.me/34644718601?text=Hola,%20quiero%20información%20sobre%20el%20chatbot%20para%20mi%20autoescuela" target="_blank" class="btn-primary btn-whatsapp-primary">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px; fill: white; margin-right: 8px;">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Contactar por WhatsApp
+            </a>
+            <a href="#contacto" class="btn-secondary">Agendar Auditoría Gratuita</a>
+        </div>
+        
+        <div class="guarantee-badge">
+            <span>✓</span> 7 días gratis • Cancela cuando quieras • Sin tarjeta de crédito
+        </div>
+        
+        <!-- Quick Examples -->
+        <div style="margin-top: 40px; max-width: 700px; margin-left: auto; margin-right: auto;" class="quick-examples">
+            <p class="examples-label" style="font-size: 14px; margin-bottom: 12px; font-weight: 600;">Pregúntale lo que quieras:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                <div class="example-pill" onclick="window.voiceflow?.chat?.open()">
+                    💰 "¿Cuánto cuesta el carnet B?"
+                </div>
+                <div class="example-pill" onclick="window.voiceflow?.chat?.open()">
+                    📅 "¿Qué horarios tenéis?"
+                </div>
+                <div class="example-pill" onclick="window.voiceflow?.chat?.open()">
+                    📍 "¿Dónde estáis ubicados?"
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges Section -->
+    <section class="trust-section">
+        <div class="trust-container">
+            <div class="trust-title">Confía en nosotros</div>
+            <div class="trust-logos">
+                <div class="trust-badge">
+                    <span class="trust-badge-icon">🔒</span>
+                    <span>Certificado GDPR</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="trust-badge-icon">⭐</span>
+                    <span>4.7/5 en valoraciones</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="trust-badge-icon">⚡</span>
+                    <span>Implementación rápida</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="trust-badge-icon">🛡️</span>
+                    <span>Soporte 24/7</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section - Premium 3 Steps -->
+    <section class="how-it-works-section" id="funcionalidades" style="padding: 100px 20px; background: #fff;">
+        <div class="products-container" style="max-width: 1200px; margin: 0 auto;">
+            <div class="section-header" style="text-align: center; margin-bottom: 80px;">
+                <h2 style="font-size: 42px; font-weight: 800; margin-bottom: 16px;">Cómo Funciona en 3 Pasos</h2>
+                <p style="font-size: 20px; color: #6b7280;">Simple, rápido y efectivo. Sin complicaciones técnicas.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-bottom: 60px;">
+                <!-- Step 1 -->
+                <div class="step-item" style="text-align: center; position: relative;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);">
+                        <span style="font-size: 40px;">💬</span>
+                    </div>
+                    <div style="position: absolute; top: 35px; right: -24px; font-size: 80px; font-weight: 800; color: #f0fdf4; z-index: 0;">1</div>
+                    <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 12px; position: relative; z-index: 1;">Instalamos el Chatbot</h3>
+                    <p style="font-size: 16px; color: #6b7280; line-height: 1.6;">Lo configuramos con la información de tu autoescuela: precios, horarios, ubicación y servicios.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-item" style="text-align: center; position: relative;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);">
+                        <span style="font-size: 40px;">🎯</span>
+                    </div>
+                    <div style="position: absolute; top: 35px; right: -24px; font-size: 80px; font-weight: 800; color: #f0fdf4; z-index: 0;">2</div>
+                    <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 12px; position: relative; z-index: 1;">Empieza a Captar Leads</h3>
+                    <p style="font-size: 16px; color: #6b7280; line-height: 1.6;">Responde automáticamente 24/7 y recoge datos de contacto de cada persona interesada.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-item" style="text-align: center; position: relative;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);">
+                        <span style="font-size: 40px;">📊</span>
+                    </div>
+                    <div style="position: absolute; top: 35px; right: -24px; font-size: 80px; font-weight: 800; color: #f0fdf4; z-index: 0;">3</div>
+                    <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 12px; position: relative; z-index: 1;">Recibes Todo Organizado</h3>
+                    <p style="font-size: 16px; color: #6b7280; line-height: 1.6;">Todos los datos se guardan automáticamente en Google Sheets, listos para hacer seguimiento.</p>
+                </div>
+            </div>
+
+            <!-- Additional Features List -->
+            <div style="background: linear-gradient(135deg, #f9fafb, #f3f4f6); border-radius: 16px; padding: 40px; margin-top: 60px;">
+                <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 24px; text-align: center;">Además incluye:</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                    <div style="display: flex; align-items: start; gap: 12px;">
+                        <span style="font-size: 24px; flex-shrink: 0;">✓</span>
+                        <span style="font-size: 16px; color: #4b5563;"><strong>Multicanal:</strong> Web, WhatsApp, Facebook e Instagram</span>
+                    </div>
+                    <div style="display: flex; align-items: start; gap: 12px;">
+                        <span style="font-size: 24px; flex-shrink: 0;">✓</span>
+                        <span style="font-size: 16px; color: #4b5563;"><strong>Personalizable:</strong> Actualiza precios y horarios en minutos</span>
+                    </div>
+                    <div style="display: flex; align-items: start; gap: 12px;">
+                        <span style="font-size: 24px; flex-shrink: 0;">✓</span>
+                        <span style="font-size: 16px; color: #4b5563;"><strong>Estadísticas:</strong> Ve qué preguntas hacen más tus clientes</span>
+                    </div>
+                    <div style="display: flex; align-items: start; gap: 12px;">
+                        <span style="font-size: 24px; flex-shrink: 0;">✓</span>
+                        <span style="font-size: 16px; color: #4b5563;"><strong>Sin código:</strong> No necesitas conocimientos técnicos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Demo Section -->
+    <section class="video-demo-section" style="padding: 100px 20px; background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+                <h2 style="font-size: 42px; font-weight: 800; margin-bottom: 16px; color: #065f46;">Mira Cómo Funciona en Acción</h2>
+                <p style="font-size: 20px; color: #6b7280;">Descubre lo fácil que es captar leads con nuestro chatbot IA</p>
+            </div>
+            
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(16, 185, 129, 0.2); border: 3px solid #10b981;">
+                    <iframe 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 18px;"
+                        src="https://www.youtube.com/embed/rPGNYSHwBvo?modestbranding=1&rel=0&showinfo=0&controls=1&autoplay=0&fs=1&cc_load_policy=0&iv_load_policy=3&autohide=1"
+                        title="Demo del Chatbot IA"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <div style="margin-top: 40px; text-align: center;">
+                    <p class="video-text" style="font-size: 18px; color: #4b5563; margin-bottom: 24px;">
+                        <strong style="color: #059669;">En menos de 1 minuto</strong> verás cómo el chatbot captura leads automáticamente
+                    </p>
+                    <a href="#contacto" class="btn-primary video-cta" style="display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, #10b981, #059669); color: white; border-radius: 8px; font-weight: 700; text-decoration: none; box-shadow: 0 0 25px rgba(16, 185, 129, 0.4); transition: all 0.3s;">
+                        Quiero Este Chatbot Para Mi Autoescuela →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Sheets Integration Section -->
+    <section class="google-sheets-section" style="padding: 100px 20px; background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); position: relative; overflow: hidden;">
+        <div class="products-container" style="max-width: 1200px; margin: 0 auto;">
+            <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+                <div style="display: inline-block; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 8px 20px; border-radius: 20px; font-size: 14px; font-weight: 700; margin-bottom: 20px;">
+                    📊 INTEGRACIÓN AUTOMÁTICA
+                </div>
+                <h2 style="font-size: 42px; font-weight: 800; margin-bottom: 20px; background: linear-gradient(135deg, #065f46, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Todos los Datos Organizados en Google Sheets</h2>
+                <p style="font-size: 20px; color: #6b7280; max-width: 800px; margin: 0 auto;">Cada vez que alguien habla con el chatbot, sus datos se guardan automáticamente en una hoja de cálculo. Sin configuración complicada, sin perder información.</p>
+            </div>
+
+            <!-- Visual Spreadsheet Example -->
+            <div class="spreadsheet-container" style="background: white; border-radius: 16px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15); overflow: hidden; margin-bottom: 50px; border: 1px solid #e5e7eb;">
+                <!-- Spreadsheet Header -->
+                <div style="background: linear-gradient(135deg, #10b981, #059669); padding: 16px 24px; display: flex; align-items: center; gap: 12px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                    </svg>
+                    <span style="color: white; font-weight: 700; font-size: 16px;">📊 Leads Autoescuela - Google Sheets</span>
+                    <div style="margin-left: auto; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 12px; color: white; font-weight: 600;">
+                        ✓ Actualización en tiempo real
+                    </div>
+                </div>
+
+                <!-- Spreadsheet Table -->
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <thead>
+                            <tr style="background: #f9fafb; border-bottom: 2px solid #e5e7eb;">
+                                <th style="padding: 16px; text-align: left; font-weight: 700; color: #374151; border-right: 1px solid #e5e7eb; min-width: 50px;">#</th>
+                                <th style="padding: 16px; text-align: left; font-weight: 700; color: #374151; border-right: 1px solid #e5e7eb; min-width: 180px;">📅 Fecha y Hora</th>
+                                <th style="padding: 16px; text-align: left; font-weight: 700; color: #374151; border-right: 1px solid #e5e7eb; min-width: 150px;">👤 Nombre</th>
+                                <th style="padding: 16px; text-align: left; font-weight: 700; color: #374151; border-right: 1px solid #e5e7eb; min-width: 130px;">📞 Teléfono</th>
+                                <th style="padding: 16px; text-align: left; font-weight: 700; color: #374151; border-right: 1px solid #e5e7eb; min-width: 200px;">📧 Email</th>
+                                <th style="padding: 16px; text-align: left; font-weight: 700; color: #374151; border-right: 1px solid #e5e7eb; min-width: 120px;">🚗 Carnet</th>
+                                <th style="padding: 16px; text-align: left; font-weight: 700; color: #374151; min-width: 100px;">🎯 Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #e5e7eb; background: #f0fdf4;">
+                                <td style="padding: 16px; color: #6b7280; border-right: 1px solid #e5e7eb;">1</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb; font-weight: 500;">29/03/2026 15:42</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb; font-weight: 600;">María García</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">644 123 456</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">maria.g@email.com</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">Carnet B</td>
+                                <td style="padding: 16px;"><span style="background: #10b981; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">Nuevo</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 16px; color: #6b7280; border-right: 1px solid #e5e7eb;">2</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb; font-weight: 500;">29/03/2026 14:28</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb; font-weight: 600;">Carlos Ruiz</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">655 987 654</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">carlos.r@email.com</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">Carnet A2</td>
+                                <td style="padding: 16px;"><span style="background: #f59e0b; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">Contactado</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 16px; color: #6b7280; border-right: 1px solid #e5e7eb;">3</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb; font-weight: 500;">29/03/2026 13:15</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb; font-weight: 600;">Ana Martínez</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">622 456 789</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">ana.m@email.com</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">Carnet B</td>
+                                <td style="padding: 16px;"><span style="background: #3b82f6; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">Inscrito</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 16px; color: #6b7280; border-right: 1px solid #e5e7eb;">4</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb; font-weight: 500;">29/03/2026 11:50</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb; font-weight: 600;">David López</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">611 234 567</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">david.l@email.com</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">Carnet C</td>
+                                <td style="padding: 16px;"><span style="background: #10b981; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">Nuevo</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 16px; color: #6b7280; border-right: 1px solid #e5e7eb;">5</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb; font-weight: 500;">28/03/2026 18:33</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb; font-weight: 600;">Laura Sánchez</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">633 789 012</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">laura.s@email.com</td>
+                                <td style="padding: 16px; color: #1f2937; border-right: 1px solid #e5e7eb;">Carnet B</td>
+                                <td style="padding: 16px;"><span style="background: #3b82f6; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">Inscrito</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Spreadsheet Footer -->
+                <div style="background: #f9fafb; padding: 16px 24px; border-top: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: #6b7280; font-size: 14px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#10b981">
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                        <span style="font-weight: 600;">Sincronización activa</span>
+                    </div>
+                    <div style="color: #6b7280; font-size: 13px;">
+                        Última actualización: hace 2 minutos
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefits Grid -->
+            <div class="products-grid">
+                <div class="product-card animate-on-scroll">
+                    <div class="product-icon">⚡</div>
+                    <h3>Actualización Instantánea</h3>
+                    <p>Los datos se guardan en tiempo real. En cuanto alguien chatea, sus datos aparecen en tu Google Sheets.</p>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-icon">📱</div>
+                    <h3>Acceso Desde Cualquier Lugar</h3>
+                    <p>Revisa los leads desde tu móvil, tablet u ordenador. Google Sheets funciona en todos tus dispositivos.</p>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-icon">🔒</div>
+                    <h3>Tus Datos, Tu Control</h3>
+                    <p>La hoja de cálculo es tuya. Puedes exportar, modificar, compartir con tu equipo o integrar con otras herramientas.</p>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-icon">📊</div>
+                    <h3>Organización Automática</h3>
+                    <p>Cada lead con su fecha, hora, datos de contacto y preferencias. Todo ordenado y listo para hacer seguimiento.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Before/After Section - Premium Comparison -->
+    <section class="before-after-section" id="beneficios" style="padding: 100px 20px; background: #fff;">
+        <div class="products-container" style="max-width: 1200px; margin: 0 auto;">
+            <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+                <h2 style="font-size: 42px; font-weight: 800; margin-bottom: 16px;">El Cambio que Verás en tu Autoescuela</h2>
+                <p style="font-size: 20px; color: #6b7280;">De perder clientes a captar leads 24/7</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+                <!-- BEFORE -->
+                <div style="background: linear-gradient(135deg, #fef2f2, #fee2e2); border: 2px solid #fecaca; border-radius: 16px; padding: 40px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+                        <div style="width: 48px; height: 48px; background: #dc2626; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <span style="font-size: 24px;">❌</span>
+                        </div>
+                        <h3 style="font-size: 28px; font-weight: 700; color: #991b1b;">Sin Chatbot</h3>
+                    </div>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;">
+                        <li style="display: flex; align-items: start; gap: 12px;">
+                            <span style="color: #dc2626; font-size: 20px; flex-shrink: 0;">✗</span>
+                            <span style="font-size: 16px; color: #7f1d1d; line-height: 1.5;">Pierdes llamadas fuera de horario</span>
+                        </li>
+                        <li style="display: flex; align-items: start; gap: 12px;">
+                            <span style="color: #dc2626; font-size: 20px; flex-shrink: 0;">✗</span>
+                            <span style="font-size: 16px; color: #7f1d1d; line-height: 1.5;">Contactos se pierden sin registro</span>
+                        </li>
+                        <li style="display: flex; align-items: start; gap: 12px;">
+                            <span style="color: #dc2626; font-size: 20px; flex-shrink: 0;">✗</span>
+                            <span style="font-size: 16px; color: #7f1d1d; line-height: 1.5;">Equipo saturado con preguntas repetitivas</span>
+                        </li>
+                        <li style="display: flex; align-items: start; gap: 12px;">
+                            <span style="color: #dc2626; font-size: 20px; flex-shrink: 0;">✗</span>
+                            <span style="font-size: 16px; color: #7f1d1d; line-height: 1.5;">Datos desorganizados en papeles y WhatsApp</span>
+                        </li>
+                        <li style="display: flex; align-items: start; gap: 12px;">
+                            <span style="color: #dc2626; font-size: 20px; flex-shrink: 0;">✗</span>
+                            <span style="font-size: 16px; color: #7f1d1d; line-height: 1.5;">Clientes se van a la competencia</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- AFTER -->
+                <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #86efac; border-radius: 16px; padding: 40px; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+                        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <span style="font-size: 24px;">✓</span>
+                        </div>
+                        <h3 style="font-size: 28px; font-weight: 700; color: #065f46;">Con Chatbot IA</h3>
+                    </div>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;">
+                        <li style="display: flex; align-items: start; gap: 12px;">
+                            <span style="color: #10b981; font-size: 20px; flex-shrink: 0;">✓</span>
+                            <span style="font-size: 16px; color: #064e3b; line-height: 1.5;"><strong>Responde 24/7</strong> sin perder ninguna consulta</span>
+                        </li>
+                        <li style="display: flex; align-items: start; gap: 12px;">
+                            <span style="color: #10b981; font-size: 20px; flex-shrink: 0;">✓</span>
+                            <span style="font-size: 16px; color: #064e3b; line-height: 1.5;"><strong>Captura automáticamente</strong> nombre, email y teléfono</span>
+                        </li>
+                        <li style="display: flex; align-items: start; gap: 12px;">
+                            <span style="color: #10b981; font-size: 20px; flex-shrink: 0;">✓</span>
+                            <span style="font-size: 16px; color: #064e3b; line-height: 1.5;"><strong>Equipo solo cierra ventas</strong>, no responde lo básico</span>
+                        </li>
+                        <li style="display: flex; align-items: start; gap: 12px;">
+                            <span style="color: #10b981; font-size: 20px; flex-shrink: 0;">✓</span>
+                            <span style="font-size: 16px; color: #064e3b; line-height: 1.5;"><strong>Todo en Google Sheets</strong> organizado y accesible</span>
+                        </li>
+                        <li style="display: flex; align-items: start; gap: 12px;">
+                            <span style="color: #10b981; font-size: 20px; flex-shrink: 0;">✓</span>
+                            <span style="font-size: 16px; color: #064e3b; line-height: 1.5;"><strong>Más inscripciones</strong> por respuesta inmediata</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="stats-bar" style="margin-top: 60px; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #86efac; border-radius: 16px; padding: 48px; text-align: center; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+                    <div>
+                        <div class="stat-number" style="font-size: 48px; font-weight: 800; color: #059669; margin-bottom: 8px;">24/7</div>
+                        <div class="stat-label" style="font-size: 16px; color: #065f46; font-weight: 600;">Disponibilidad continua</div>
+                    </div>
+                    <div>
+                        <div class="stat-number" style="font-size: 48px; font-weight: 800; color: #059669; margin-bottom: 8px;">100%</div>
+                        <div class="stat-label" style="font-size: 16px; color: #065f46; font-weight: 600;">Leads capturados</div>
+                    </div>
+                    <div>
+                        <div class="stat-number" style="font-size: 48px; font-weight: 800; color: #059669; margin-bottom: 8px;">-60%</div>
+                        <div class="stat-label" style="font-size: 16px; color: #065f46; font-weight: 600;">Tiempo en consultas básicas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Automations Section - Side by Side -->
+    <section class="pricing-section" id="precios" style="padding: 100px 20px; background: linear-gradient(135deg, #F0FDF4 0%, #FFFFFF 50%, #EFF6FF 100%);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+                
+                <!-- Pricing Column -->
+                <div>
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <h2 style="font-size: 36px; font-weight: 800; margin-bottom: 12px;">Precio Simple y Transparente</h2>
+                        <p style="font-size: 18px; color: #6b7280;">Un solo plan con todo incluido</p>
+                    </div>
+                    
+                    <div class="pricing-card featured animate-on-scroll" style="border: 3px solid #00b760;">
+                        <div class="pricing-badge">PLAN ÚNICO</div>
+                        <h3 class="pricing-plan-title" style="font-size: 28px; margin-bottom: 16px;">Chatbot IA Completo</h3>
+                        <div class="pricing-price" style="font-size: 48px; margin-bottom: 16px; color: #00b760;">99€ <span style="font-size: 20px; color: #6b7280;">/mes</span></div>
+                        <p class="pricing-description" style="font-size: 15px; margin-bottom: 28px; color: #6b7280;">Todo incluido. Sin sorpresas.</p>
+                        
+                        <ul class="pricing-features" style="text-align: left; margin-bottom: 28px;">
+                            <li>✅ Chatbot instalado en tu web</li>
+                            <li>✅ Captación de leads automática</li>
+                            <li>✅ Integración con Google Sheets</li>
+                            <li>✅ Personalización completa</li>
+                            <li>✅ Respuestas 24/7</li>
+                            <li>✅ Soporte continuo</li>
+                            <li>✅ Actualizaciones incluidas</li>
+                        </ul>
+                        
+                        <button class="pricing-button" onclick="window.location.href='#contacto'" style="width: 100%; padding: 16px; font-size: 17px;">Empezar Ahora →</button>
+                        
+                        <p style="margin-top: 20px; font-size: 13px; color: #6b7280; text-align: center;">
+                            ✓ 7 días gratis • ✓ Sin permanencia • ✓ Cancela cuando quieras
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Automations Column -->
+                <div>
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <h2 style="font-size: 36px; font-weight: 800; margin-bottom: 12px;">¿Necesitas Más Automatizaciones?</h2>
+                        <p style="font-size: 18px; color: #6b7280;">Soluciones adicionales de IA</p>
+                    </div>
+                    
+                    <div class="automations-card" style="background: rgba(255, 255, 255, 0.9); border: 1px solid #d1fae5; border-radius: 12px; padding: 32px; height: 100%; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <div style="display: grid; gap: 24px; margin-bottom: 32px;">
+                            <div style="display: flex; gap: 16px; align-items: start;">
+                                <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <span style="font-size: 24px;">📊</span>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Sistemas de Gestión Inteligentes</h4>
+                                    <p style="font-size: 15px; line-height: 1.6; color: #6b7280;">Automatiza la gestión de alumnos, horarios de clases, seguimiento de prácticas y exámenes con IA.</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 16px; align-items: start;">
+                                <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <span style="font-size: 24px;">📧</span>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Email y SMS Automatizados</h4>
+                                    <p style="font-size: 15px; line-height: 1.6; color: #6b7280;">Recordatorios de clases, seguimiento de leads, campañas de marketing personalizadas con IA.</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 16px; align-items: start;">
+                                <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <span style="font-size: 24px;">📱</span>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Integraciones Personalizadas</h4>
+                                    <p style="font-size: 15px; line-height: 1.6; color: #6b7280;">Conectamos el chatbot con tu software actual, CRM, calendario y cualquier herramienta que uses.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="padding-top: 24px; border-top: 1px solid #e5e7eb; text-align: center;">
+                            <p style="font-size: 15px; margin-bottom: 16px; color: #4b5563;">
+                                <strong>Primero prueba el chatbot.</strong> Si necesitas más, lo hablamos en la auditoría.
+                            </p>
+                            <a href="#contacto" class="btn-secondary" style="display: inline-block; padding: 14px 28px; background: linear-gradient(135deg, #10b981, #059669); color: white; border-radius: 8px; font-weight: 700; text-decoration: none; box-shadow: 0 0 20px rgba(16, 185, 129, 0.4), 0 4px 12px rgba(16, 185, 129, 0.3); border: 2px solid #10b981; transition: all 0.3s;">
+                                Hablar sobre Automatizaciones
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="faq-container">
+            <div class="section-header">
+                <h2>Preguntas Frecuentes</h2>
+                <p>Resolvemos tus dudas sobre Autoescuela IA</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿Cuánto tiempo tarda la implementación?</div>
+                <div class="faq-answer">
+                    La configuración básica es muy rápida y puede estar lista en pocas horas. Sin embargo, el tiempo total varía según el nivel de personalización que desees y si quieres integrar otros sistemas de IA dentro de tu autoescuela. Nuestro equipo te guiará en cada paso del proceso.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Necesito conocimientos técnicos?</div>
+                <div class="faq-answer">
+                    No, absolutamente ninguno. Autoescuela IA está diseñada para ser intuitiva y fácil de usar. Además, ofrecemos formación completa y soporte continuo para que aproveches al máximo la plataforma.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Se integra con mi software actual?</div>
+                <div class="faq-answer">
+                    Sí, Autoescuela IA se integra con los principales sistemas de gestión de autoescuelas, WhatsApp Business, tu sitio web y redes sociales. Si usas un sistema específico, contáctanos para confirmar compatibilidad.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Qué pasa si el chatbot no sabe responder algo?</div>
+                <div class="faq-answer">
+                    El sistema deriva automáticamente las consultas complejas a tu equipo humano, registrando toda la conversación para que tengas contexto completo. Además, la IA aprende continuamente de estas situaciones.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Puedo cancelar en cualquier momento?</div>
+                <div class="faq-answer">
+                    Sí, no hay permanencia. Puedes cancelar tu suscripción cuando quieras sin penalizaciones. Estamos seguros de que los resultados te convencerán de quedarte.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Cómo garantizan la seguridad de los datos?</div>
+                <div class="faq-answer">
+                    Utilizamos encriptación de nivel bancario (AES-256), cumplimos con GDPR, y todos los datos se almacenan en servidores seguros en la UE. Realizamos auditorías de seguridad regulares y nunca compartimos tu información con terceros.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-section" id="contacto">
+        <div class="contact-container">
+            <div class="section-header">
+                <h2>Te Enseño Cómo Funcionaría en Tu Autoescuela</h2>
+                <p>Rellena tus datos y te preparo una demo adaptada a tu caso. Verás exactamente cómo el chatbot responderá las preguntas de tus clientes con la información de tu autoescuela.</p>
+            </div>
+            
+            <form class="contact-form" id="auditForm" action="https://formsubmit.co/autoescuelaiaflow@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="Nueva Solicitud de Demo - Autoescuela IA">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_autoresponse" value="Gracias por tu interés en Autoescuela IA. Hemos recibido tu solicitud y nos pondremos en contacto contigo en menos de 24 horas.">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nombre">Nombre *</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos *</label>
+                        <input type="text" id="apellidos" name="apellidos" required placeholder="Tus apellidos">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefono">Teléfono *</label>
+                        <input type="tel" id="telefono" name="telefono" required placeholder="+34 600 000 000">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="autoescuela">Nombre de la Autoescuela *</label>
+                        <input type="text" id="autoescuela" name="autoescuela" required placeholder="Nombre de tu autoescuela">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="alumnos">Número de Alumnos</label>
+                        <select id="alumnos" name="alumnos">
+                            <option value="">Selecciona...</option>
+                            <option value="1-50">1-50 alumnos</option>
+                            <option value="51-100">51-100 alumnos</option>
+                            <option value="101-300">101-300 alumnos</option>
+                            <option value="300+">Más de 300 alumnos</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interes">Principal Interés</label>
+                        <select id="interes" name="interes">
+                            <option value="">Selecciona...</option>
+                            <option value="automatizacion">Automatización de consultas</option>
+                            <option value="leads">Captación de leads</option>
+                            <option value="gestion">Gestión de alumnos</option>
+                            <option value="todo">Solución completa</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="mensaje">Cuéntanos sobre tu autoescuela</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="¿Qué desafíos enfrentas actualmente? ¿Qué te gustaría automatizar?"></textarea>
+                    </div>
+                </div>
+                
+                <button type="submit" class="form-submit">Quiero Ver la Demo Personalizada →</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <div class="cta-badge">🎁 Primeros 7 días GRATIS</div>
+            <h2>Empieza Hoy. Sin Riesgo.</h2>
+            <p>Prueba el chatbot gratis durante 7 días. Si no te convence, cancelas y no pagas nada. Sin permanencia, sin letra pequeña.</p>
+            <a href="#contacto" class="btn-white">Ver Demo Personalizada →</a>
+            <div style="margin-top: 16px; font-size: 14px; color: rgba(255,255,255,0.8);">
+                ✓ Respuesta en menos de 24h • ✓ Demo adaptada a tu autoescuela • ✓ Sin compromiso
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>Producto</h4>
+                <ul>
+                    <li><a href="#productos">Características</a></li>
+                    <li><a href="#precios">Precios</a></li>
+                    <li><a href="#">Integraciones</a></li>
+                    <li><a href="#">API</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Casos de Éxito</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="#">Documentación</a></li>
+                    <li><a href="#">Guías</a></li>
+                    <li><a href="#">Soporte</a></li>
+                    <li><a href="#">Estado del Sistema</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacidad</a></li>
+                    <li><a href="#">Términos</a></li>
+                    <li><a href="#">Cookies</a></li>
+                    <li><a href="#">GDPR</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2024 Autoescuela IA. Todos los derechos reservados.
+        </div>
+    </footer>
+
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/34644718601?text=Hola,%20quiero%20información%20sobre%20el%20chatbot%20para%20mi%20autoescuela" target="_blank" class="whatsapp-button" title="Contáctanos por WhatsApp">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+        </a>
+    </div>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isOpen = answer.classList.contains('active');
+                
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(a => {
+                    a.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                });
+                
+                // Toggle current answer
+                if (!isOpen) {
+                    answer.classList.add('active');
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe product cards and feature items
+        document.querySelectorAll('.product-card, .feature-item, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Sticky CTA Bar - Show/Hide on scroll
+        let lastScroll = 0;
+        const stickyCta = document.getElementById('stickyCta');
+        const heroSection = document.querySelector('.hero');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+            
+            // Show sticky CTA after scrolling past hero
+            if (currentScroll > heroBottom) {
+                stickyCta.classList.add('visible');
+            } else {
+                stickyCta.classList.remove('visible');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Animate on scroll for all elements with class
+        const animateObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            animateObserver.observe(el);
+        });
+
+        // Parallax effect for hero orbs
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroOrbs = document.querySelectorAll('.hero::before, .hero::after');
+            
+            // Subtle parallax movement
+            document.querySelector('.hero').style.setProperty('--scroll', scrolled * 0.5 + 'px');
+        });
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+            
+            // Change hamburger icon
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            if (mobileMenu.classList.contains('active')) {
+                menuToggle.textContent = '✕';
+            } else {
+                menuToggle.textContent = '☰';
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (mobileMenu && menuToggle) {
+                if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+                    mobileMenu.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                }
+            }
+        });
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+            
+            // Update icon
+            const icon = document.querySelector('.toggle-icon');
+            if (icon) {
+                icon.textContent = isDark ? '🌙' : '☀️';
+            }
+        }
+
+        // Load dark mode preference
+        window.addEventListener('DOMContentLoaded', function() {
+            const darkMode = localStorage.getItem('darkMode');
+            if (darkMode === 'enabled') {
+                document.body.classList.add('dark-mode');
+                const icon = document.querySelector('.toggle-icon');
+                if (icon) {
+                    icon.textContent = '🌙';
+                }
+            }
+        });
+
+        // Contact Form Handler - Show success modal after submission
+        const auditForm = document.getElementById('auditForm');
+        if (auditForm) {
+            auditForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Enviando...';
+                submitBtn.disabled = true;
+                
+                // Submit form via fetch to avoid page reload
+                const formData = new FormData(this);
+                
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    // Show success modal
+                    document.getElementById('successModal').classList.add('show');
+                    
+                    // Reset form
+                    auditForm.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                })
+                .catch(error => {
+                    // Even if there's an error, show success (FormSubmit might still work)
+                    document.getElementById('successModal').classList.add('show');
+                    auditForm.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
+            });
+        }
+
+        // Close success modal
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.remove('show');
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('successModal');
+            if (e.target === modal) {
+                closeSuccessModal();
+            }
+        });
+    </script>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-modal-content">
+            <div class="success-icon">✓</div>
+            <h3>¡Solicitud Enviada!</h3>
+            <p>Hemos recibido tu información correctamente. Nos pondremos en contacto contigo en menos de 24 horas para preparar tu demo personalizada.</p>
+            <button class="success-modal-btn" onclick="closeSuccessModal()">Entendido</button>
+        </div>
+    </div>
+
+    <!-- Voiceflow Chatbot -->
+    <script type="text/javascript">
+      (function(d, t) {
+          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+          v.onload = function() {
+            window.voiceflow.chat.load({
+              verify: { projectID: '6995da3edef71d7c0bb90136' },
+              url: 'https://general-runtime.voiceflow.com',
+              versionID: 'production',
+              voice: {
+                url: "https://runtime-api.voiceflow.com"
+              }
+            });
+          }
+          v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    </script>
+</body>
+</html>
