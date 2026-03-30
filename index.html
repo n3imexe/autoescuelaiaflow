@@ -84,7 +84,16 @@
         }
 
         .stat-item {
-            overflow: visible;
+            overflow: visible !important;
+        }
+
+        .stat-item::-webkit-scrollbar {
+            display: none !important;
+        }
+
+        .stat-item {
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
         }
 
         /* Spreadsheet Container */
@@ -1607,23 +1616,32 @@
             line-height: 1;
             margin-bottom: 8px;
             letter-spacing: -0.02em;
+            overflow: visible;
         }
 
-        .stat-number::after {
-            content: ':';
+        .stat-number::-webkit-scrollbar {
+            display: none;
         }
 
-        /* Hide colons on desktop (screens wider than 768px) */
-        @media (min-width: 769px) {
-            .stat-number::after {
-                content: '';
-            }
+        .stat-number {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
         .stat-label {
             font-size: 14px;
             color: #6b7280;
             font-weight: 500;
+            overflow: visible;
+        }
+
+        .stat-label::-webkit-scrollbar {
+            display: none;
+        }
+
+        .stat-label {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
         /* CTA Section */
